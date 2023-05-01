@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }, context)
         overlay.setFocusItemsOnTap(true);
 
-        mapView.overlays.add(overlay);
+        map.overlays.add(overlay); //mapView?
     }
 
 
