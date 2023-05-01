@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Transformations.map
+import com.example.felinefinder.databinding.ActivityMainBinding
 //import com.niels_ole.customtileserver.R
 
 import org.osmdroid.config.Configuration.*
@@ -23,10 +25,15 @@ import org.osmdroid.views.overlay.OverlayItem
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityMainBinding
+
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     private lateinit var map : MapView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //handle permissions first, before map is created. not depicted here
 
@@ -55,18 +62,34 @@ class MainActivity : AppCompatActivity() {
         items.add(OverlayItem("Title", "Description", GeoPoint(0.0, 0.0)))
 
 //the overlay
-        var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-            override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
-                //do something
-                return true
-            }
-            override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
-                return false
-            }
-        }, context)
-        overlay.setFocusItemsOnTap(true);
+        fun addItem() {
+            var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+                override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
+                 //do something
+                    return true
+                }
+                override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
+                    return false
+                }
+          }, context)
+            overlay.setFocusItemsOnTap(true);
 
-        map.overlays.add(overlay); //mapView?
+            map.overlays.add(overlay); //mapView?
+        }
+
+        binding.fabAddCat.setOnClickListener() {
+            Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
+
+        }
+
+        binding.fabAddLost.setOnClickListener() {
+            Toast.makeText( this, "lost cat button", Toast.LENGTH_SHORT).show()
+
+        }
+
+
+
+
     }
 
 
