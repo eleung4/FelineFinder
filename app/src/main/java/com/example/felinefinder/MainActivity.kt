@@ -16,6 +16,9 @@ import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.ItemizedIconOverlay
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.OverlayItem
 
 import java.util.ArrayList
 
@@ -46,7 +49,26 @@ class MainActivity : AppCompatActivity() {
         mapController.setZoom(9.5)
         val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
         mapController.setCenter(startPoint);
+
+        //your items
+        val items = ArrayList<OverlayItem>()
+        items.add(OverlayItem("Title", "Description", GeoPoint(0.0, 0.0)))
+
+//the overlay
+        var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+            override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
+                //do something
+                return true
+            }
+            override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
+                return false
+            }
+        }, context)
+        overlay.setFocusItemsOnTap(true);
+
+        mapView.overlays.add(overlay);
     }
+
 
     override fun onResume() {
         super.onResume()
