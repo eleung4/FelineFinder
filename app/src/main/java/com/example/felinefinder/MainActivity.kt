@@ -9,3 +9,5 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
+//dwnload google services emulator
+//if api doesnt work, use photo, then track by calculating lat and long
