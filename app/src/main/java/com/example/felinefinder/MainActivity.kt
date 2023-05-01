@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         binding.fabAddCat.setOnClickListener() {
             Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
 
-        }
+        } // ee
 
         binding.fabAddLost.setOnClickListener() {
             Toast.makeText( this, "lost cat button", Toast.LENGTH_SHORT).show()
