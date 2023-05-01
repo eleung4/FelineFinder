@@ -14,6 +14,7 @@ import androidx.lifecycle.Transformations.map
 
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 
 import java.util.ArrayList
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         map = findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
+        val mapController = map.controller
+        mapController.setZoom(9.5)
+        val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
+        mapController.setCenter(startPoint);
     }
 
     override fun onResume() {
