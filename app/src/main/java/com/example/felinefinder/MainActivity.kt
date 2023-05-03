@@ -2,15 +2,20 @@ package com.example.felinefinder
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.Transformations.map
+import androidx.recyclerview.widget.RecyclerView
 import com.example.felinefinder.databinding.ActivityMainBinding
 //import com.niels_ole.customtileserver.R
 
@@ -25,15 +30,12 @@ import org.osmdroid.views.overlay.OverlayItem
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding : ActivityMainBinding
-
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     private lateinit var map : MapView
+    //private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         //handle permissions first, before map is created. not depicted here
 
@@ -62,20 +64,19 @@ class MainActivity : AppCompatActivity() {
         items.add(OverlayItem("Title", "Description", GeoPoint(0.0, 0.0)))
 
 //the overlay
-        fun addItem() {
-            var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-                override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
-                 //do something
-                    return true
-                }
-                override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
-                    return false
-                }
-          }, context)
-            overlay.setFocusItemsOnTap(true);
+        var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+            override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
+                //do something
+                return true
+            }
+            override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
+                return false
+            }
+        }, context)
+        overlay.setFocusItemsOnTap(true);
 
-            map.overlays.add(overlay); //mapView?
-        }
+        map.overlays.add(overlay); //mapView?
+
 
         binding.fabAddCat.setOnClickListener() {
             Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
@@ -87,11 +88,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
-
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -99,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-        map.onResume() //needed for compass, my location overlays, v6.0.0 and up
+        Transformations.map.onResume() //needed for compass, my location overlays, v6.0.0 and up
     }
 
     override fun onPause() {
@@ -108,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().save(this, prefs);
-        map.onPause()  //needed for compass, my location overlays, v6.0.0 and up
+        Transformations.map.onPause()  //needed for compass, my location overlays, v6.0.0 and up
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -126,6 +123,45 @@ class MainActivity : AppCompatActivity() {
                 REQUEST_PERMISSIONS_REQUEST_CODE)
         }
     }
+
+
+    //if click on little map marker thingy, will show info bigger
+    //sends to detail activity (ideally)
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        // Create a new view, which defines the UI of the list item
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.activity_main, viewGroup, false)
+
+        return RecyclerView.ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+
+        // Get element from your dataset at this position and replace the
+        // contents of the view with that element
+        val hero = dataSet[position]
+        viewHolder.textViewName.text = hero.name
+        viewHolder.textViewDesc.text = hero.description
+        viewHolder.textViewFriendly.text = hero.friendly
+        viewHolder.layout.setOnClickListener {
+            Toast.makeText(it.context, hero.toString(), Toast.LENGTH_SHORT).show()
+            //make intent to open new activity
+            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
+//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_NAME, hero.name)
+//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_DESCRIPTION, hero.description)
+//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_SUPERPOWER, hero.superpower)
+//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_RANKING, hero.ranking)
+//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_IMAGE, hero.image)
+            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
+            it.context.startActivity(detailIntent)
+        }
+    }
+
+}
+
+
+
 
 
     /*private fun requestPermissionsIfNecessary(String[] permissions) {
