@@ -16,15 +16,16 @@ class CatsDetailActivity : AppCompatActivity() {
         binding = ActivityCatsDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val hero = intent?.getParcelableExtra<Cat>(EXTRA_CAT)
-        binding.textViewDetailCatName.text = hero?.name
-        binding.textViewDetailDescription.text = hero?.description
-        binding.textViewDetailFriendly.text = hero?.friendly
-        binding.textViewDetailBreed.text = hero?.breed
-        val heroName = ""
+        val cat = intent?.getParcelableExtra<Cat>(EXTRA_CAT)
+        binding.textViewDetailCatName.text = cat?.name
+        binding.textViewDetailDescription.text = cat?.description
+        binding.textViewDetailFriendly.text = cat?.friendly
+        binding.textViewDetailBreed.text = cat?.breed
+        binding.textViewDetailLastSeen.text = cat?.lastSeen.toString()
+        val catName = ""
 
         //how do you upload diff images?
-//        val heroDrawable = getDrawable(resources.getIdentifier(hero?.image, "drawable", packageName))
-//        binding.imageViewDetailPicture.setImageDrawable(heroDrawable)
+        val catDrawable = getDrawable(resources.getIdentifier(cat?.image, "drawable", packageName))
+        binding.imageViewDetailPicture.setImageDrawable(catDrawable)
     }
 }

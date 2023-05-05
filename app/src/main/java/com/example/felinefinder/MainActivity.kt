@@ -17,6 +17,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.Transformations.map
 import androidx.recyclerview.widget.RecyclerView
 import com.example.felinefinder.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 //import com.niels_ole.customtileserver.R
 
 import org.osmdroid.config.Configuration.*
@@ -25,14 +26,16 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
+import androidx.fragment.app.Fragment
 
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     private lateinit var map : MapView
-    //private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +62,67 @@ class MainActivity : AppCompatActivity() {
         val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
         mapController.setCenter(startPoint);
 
+        loadFragment(MapFragment())
+        var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    loadFragment(MapFragment())
+                    true
+                }
+                R.id.message -> {
+                    loadFragment(FavoritesFragment())
+                    true
+                }
+                R.id.settings -> {
+                    loadFragment(ListFragment())
+                    true
+                }
+                else -> {
+                    true
+                }
+            }
+        }
+    }
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
+    }
+
+
+//        binding.fabAddCat.setOnClickListener() {
+//            Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
+//
+//        } // ee
+//
+//        binding.fabAddLost.setOnClickListener() {
+//            Toast.makeText( this, "lost cat button", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+
+    private fun addIcon(lat : Double, long : Double) {
+        var marker = Marker(map)
+        marker.position = GeoPoint(lat, long)
+        marker.icon = ContextCompat.GetDrawable(context, R.drawable.ic_cat_icon_24)
+        marker.title = "Test Marker"
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+        map.overlays.add(marker)
+        map.invalidate()
+//        marker.setOnMarkerClickListener() {
+//
+//            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
+//            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
+//
+//            it.context.startActivity(detailIntent)
+//        }
+        //im so confused what am i doing
+    }
+
+    private fun addCat(name : String , description : String, lat : Double, long : Double) {
         //your items
         val items = ArrayList<OverlayItem>()
-        items.add(OverlayItem("Title", "Description", GeoPoint(0.0, 0.0)))
+        items.add(OverlayItem(name, description, GeoPoint(lat, long)))
 
 //the overlay
         var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
@@ -76,17 +137,7 @@ class MainActivity : AppCompatActivity() {
         overlay.setFocusItemsOnTap(true);
 
         map.overlays.add(overlay); //mapView?
-
-
-        binding.fabAddCat.setOnClickListener() {
-            Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
-
-        } // ee
-
-        binding.fabAddLost.setOnClickListener() {
-            Toast.makeText( this, "lost cat button", Toast.LENGTH_SHORT).show()
-
-        }
+        addIcon(lat, long)
 
     }
 
@@ -124,7 +175,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     //if click on little map marker thingy, will show info bigger
     //sends to detail activity (ideally)
 
@@ -159,10 +209,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-
-
-
 
     /*private fun requestPermissionsIfNecessary(String[] permissions) {
         val permissionsToRequest = ArrayList<String>();

@@ -2,6 +2,7 @@ package com.example.felinefinder
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @Parcelize
 data class Cat (
@@ -13,5 +14,6 @@ data class Cat (
     var lat : Double,
     var description: String,
     var friendly : String,
+    var lastSeen : Date,
     val image: String
 ): Parcelable
