@@ -1,9 +1,6 @@
 package com.example.felinefinder
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -13,8 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.Transformations.map
 import androidx.recyclerview.widget.RecyclerView
 import com.example.felinefinder.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,13 +25,13 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
-import androidx.fragment.app.Fragment
+
 
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
-    private lateinit var map : MapView
+    private lateinit var mapView : MapView
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,13 +51,6 @@ class MainActivity : AppCompatActivity() {
 
         //inflate and create the map
         setContentView(R.layout.activity_main)
-
-        map = findViewById<MapView>(R.id.map)
-        map.setTileSource(TileSourceFactory.MAPNIK)
-        val mapController = map.controller
-        mapController.setZoom(9.5)
-        val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
-        mapController.setCenter(startPoint);
 
         loadFragment(MapFragment())
         var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
@@ -83,12 +73,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-    private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
-        transaction.commit()
-    }
 
 
 //        binding.fabAddCat.setOnClickListener() {
@@ -101,45 +85,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-    private fun addIcon(lat : Double, long : Double) {
-        var marker = Marker(map)
-        marker.position = GeoPoint(lat, long)
-        marker.icon = ContextCompat.GetDrawable(context, R.drawable.ic_cat_icon_24)
-        marker.title = "Test Marker"
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-        map.overlays.add(marker)
-        map.invalidate()
-//        marker.setOnMarkerClickListener() {
-//
-//            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
-//            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
-//
-//            it.context.startActivity(detailIntent)
-//        }
-        //im so confused what am i doing
-    }
 
-    private fun addCat(name : String , description : String, lat : Double, long : Double) {
-        //your items
-        val items = ArrayList<OverlayItem>()
-        items.add(OverlayItem(name, description, GeoPoint(lat, long)))
-
-//the overlay
-        var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-            override fun onItemSingleTapUp(index:Int, item:OverlayItem):Boolean {
-                //do something
-                return true
-            }
-            override fun onItemLongPress(index:Int, item:OverlayItem):Boolean {
-                return false
-            }
-        }, context)
-        overlay.setFocusItemsOnTap(true);
-
-        map.overlays.add(overlay); //mapView?
-        addIcon(lat, long)
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -147,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-        Transformations.map.onResume() //needed for compass, my location overlays, v6.0.0 and up
+//        Transformations.map.onResume() //needed for compass, my location overlays, v6.0.0 and up
     }
 
     override fun onPause() {
@@ -156,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().save(this, prefs);
-        Transformations.map.onPause()  //needed for compass, my location overlays, v6.0.0 and up
+//        Transformations.map.onPause()  //needed for compass, my location overlays, v6.0.0 and up
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -178,37 +124,13 @@ class MainActivity : AppCompatActivity() {
     //if click on little map marker thingy, will show info bigger
     //sends to detail activity (ideally)
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.activity_main, viewGroup, false)
-
-        return RecyclerView.ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        val hero = dataSet[position]
-        viewHolder.textViewName.text = hero.name
-        viewHolder.textViewDesc.text = hero.description
-        viewHolder.textViewFriendly.text = hero.friendly
-        viewHolder.layout.setOnClickListener {
-            Toast.makeText(it.context, hero.toString(), Toast.LENGTH_SHORT).show()
-            //make intent to open new activity
-            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
-//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_NAME, hero.name)
-//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_DESCRIPTION, hero.description)
-//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_SUPERPOWER, hero.superpower)
-//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_RANKING, hero.ranking)
-//            detailIntent.putExtra(HeroesDetailActivity.EXTRA_IMAGE, hero.image)
-            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
-            it.context.startActivity(detailIntent)
-        }
-    }
 
 }
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
+    }
 
     /*private fun requestPermissionsIfNecessary(String[] permissions) {
         val permissionsToRequest = ArrayList<String>();
@@ -226,6 +148,6 @@ class MainActivity : AppCompatActivity() {
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }*/
-}
+
 //dwnload google services emulator
 //if api doesnt work, use photo, then track by calculating lat and long
