@@ -65,7 +65,7 @@ class MapFragment : Fragment() {
 
         // should center the map??
         val mapController = mapView.controller
-        mapController.setZoom(9.5)
+        mapController.setZoom(9.99)
         val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
         mapController.setCenter(startPoint);
 
