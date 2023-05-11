@@ -43,7 +43,7 @@ class CatAdapter : AppCompatActivity() {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         val cat = dataSet[position]
-        viewHolder.textViewcatitemName.text = cat.name
+        viewHolder.textViewName.text = cat.name
         viewHolder.textViewDesc.text = cat.description
         viewHolder.textViewFriendly.text = cat.friendly
         viewHolder.layout.setOnClickListener {
