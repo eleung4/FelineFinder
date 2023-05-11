@@ -18,7 +18,7 @@ class CatAdapter : AppCompatActivity() {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.activity_main, viewGroup, false)
 
-        return RecyclerView.ViewHolder(view) //wee
+        return RecyclerView.ViewHolder(view) //weee
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
