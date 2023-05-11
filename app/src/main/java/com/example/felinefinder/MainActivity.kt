@@ -85,7 +85,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
+    }
 
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -120,34 +126,4 @@ class MainActivity : AppCompatActivity() {
                 REQUEST_PERMISSIONS_REQUEST_CODE)
         }
     }
-
-    //if click on little map marker thingy, will show info bigger
-    //sends to detail activity (ideally)
-
-
 }
-    private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
-        transaction.commit()
-    }
-
-    /*private fun requestPermissionsIfNecessary(String[] permissions) {
-        val permissionsToRequest = ArrayList<String>();
-        permissions.forEach { permission ->
-        if (ContextCompat.checkSelfPermission(this, permission)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            permissionsToRequest.add(permission);
-        }
-    }
-        if (permissionsToRequest.size() > 0) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toArray(new String[0]),
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
-    }*/
-
-//dwnload google services emulator
-//if api doesnt work, use photo, then track by calculating lat and long
