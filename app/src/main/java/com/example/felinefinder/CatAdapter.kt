@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class CatAdapter : AppCompatActivity() {
+class CatAdapter(var dataSet: List<String>) : RecyclerView.Adapter<CatAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView
         val textViewDesc : TextView
@@ -26,11 +26,8 @@ class CatAdapter : AppCompatActivity() {
             layout = view.findViewById(R.id.layout_catItem)
         }
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cat_item)
-    }
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.activity_main, viewGroup, false)
@@ -42,16 +39,20 @@ class CatAdapter : AppCompatActivity() {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        val cat = dataSet[position]
-        viewHolder.textViewName.text = cat.name
-        viewHolder.textViewDesc.text = cat.description
-        viewHolder.textViewFriendly.text = cat.friendly
-        viewHolder.layout.setOnClickListener {
-            Toast.makeText(it.context, cat.toString(), Toast.LENGTH_SHORT).show()
-            //make intent to open new activity
-            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
-            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
-            it.context.startActivity(detailIntent)
-        }
+//        val cat = dataSet[position]
+//        viewHolder.textViewName.text = cat.name
+//        viewHolder.textViewDesc.text = cat.description
+//        viewHolder.textViewFriendly.text = cat.friendly
+//        viewHolder.layout.setOnClickListener {
+//            Toast.makeText(it.context, cat.toString(), Toast.LENGTH_SHORT).show()
+//            //make intent to open new activity
+//            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
+//            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
+//            it.context.startActivity(detailIntent)
+//        }
+    }
+
+    override fun getItemCount(): Int {
+        return dataSet.size
     }
 }
