@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
@@ -32,6 +33,8 @@ class MapFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var addCat : FloatingActionButton
+    private lateinit var addLostCat : FloatingActionButton
     private lateinit var mapView : MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +53,17 @@ class MapFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val rootLayout =  inflater.inflate(R.layout.fragment_map, container, false)
-
         //requireContext()
+
+
 
         mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
         mapView.setTileSource(TileSourceFactory.MAPNIK)
+
+        addCat = mapView.findViewById(R.id.fab_addCat)
+        addLostCat = mapView.findViewById(R.id.fab_addLost)
+
+        // should center the map??
         val mapController = mapView.controller
         mapController.setZoom(9.5)
         val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
