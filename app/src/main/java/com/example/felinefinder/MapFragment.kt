@@ -40,6 +40,7 @@ class MapFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+//        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView
     }
 
     override fun onCreateView(
@@ -52,7 +53,7 @@ class MapFragment : Fragment() {
 
         //requireContext()
 
-        rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
+        mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         val mapController = mapView.controller
         mapController.setZoom(9.5)
