@@ -29,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MapFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MapFragment : Fragment() {
+class MapFragment (var catList : MutableList<Data>): Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -97,8 +97,13 @@ class MapFragment : Fragment() {
 
     private fun addCat(name : String , description : String, lat : Double, long : Double) {
         //your items
+        var thisCat = New Cat(name, description, lat, long)
+        catList.add(thisCat)
+
         val items = ArrayList<OverlayItem>()
         items.add(OverlayItem(name, description, GeoPoint(lat, long)))
+
+
 
 //the overlay
         var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
