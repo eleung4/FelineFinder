@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -16,7 +15,6 @@ import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
 import java.util.ArrayList
-import org.osmdroid.config.Configuration.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -98,7 +96,7 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
 
     private fun addCat(name : String , description : String, lat : Double, long : Double) {
         //your items
-//        var thisCat =  Cat(name, description, lat, long)
+        thisCat =  Data(name, description, lat, long)
         catList.add(thisCat(name, description, lat, long))
 
         val items = ArrayList<OverlayItem>()

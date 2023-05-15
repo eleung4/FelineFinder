@@ -16,7 +16,7 @@ class CatsDetailActivity : AppCompatActivity() {
         binding = ActivityCatsDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val cat = intent?.getParcelableExtra<Cat>(EXTRA_CAT)
+        val cat = intent?.getParcelableExtra<Data>(EXTRA_CAT)
         binding.textViewDetailCatName.text = cat?.name
         binding.textViewDetailDescription.text = cat?.description
         binding.textViewDetailFriendly.text = cat?.friendly
