@@ -1,10 +1,13 @@
 package com.example.felinefinder
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -36,13 +39,20 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
     private lateinit var mapView : MapView
     private lateinit var thisCat : Data
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-//        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView
+//        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView'
+
+        addCat.setOnClickListener {
+            val detailIntent = Intent(this, CatsDetailActivity::class.java).apply
+            startActivity(detailIntent)
+
+
     }
 
     override fun onCreateView(
