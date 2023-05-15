@@ -36,6 +36,7 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
     private lateinit var addCat : FloatingActionButton
     private lateinit var addLostCat : FloatingActionButton
     private lateinit var mapView : MapView
+    private lateinit var thisCat : Data
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,8 +98,8 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
 
     private fun addCat(name : String , description : String, lat : Double, long : Double) {
         //your items
-        var thisCat = New Cat(name, description, lat, long)
-        catList.add(thisCat)
+//        var thisCat =  Cat(name, description, lat, long)
+        catList.add(thisCat(name, description, lat, long))
 
         val items = ArrayList<OverlayItem>()
         items.add(OverlayItem(name, description, GeoPoint(lat, long)))

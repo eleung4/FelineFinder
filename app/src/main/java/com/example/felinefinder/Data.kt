@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize
-data class Cat (
+data class Data (
     var name : String,
     var breed : String,
     var age : Int,
