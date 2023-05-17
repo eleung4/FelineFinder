@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_pets_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_baseline_temple_buddhist_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_rat_24.xml" value="0.2345" />
+        <entry key="app/src/main/res/layout/activity_cat_detail.xml" value="0.36302083333333335" />
         <entry key="app/src/main/res/layout/activity_cat_item.xml" value="0.36302083333333335" />
         <entry key="app/src/main/res/layout/activity_cats_detail.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35208333333333336" />
