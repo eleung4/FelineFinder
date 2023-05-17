@@ -34,105 +34,11 @@ class MapFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var catList : MutableList<Data>
-    private lateinit var addCat : FloatingActionButton
-    private lateinit var addLostCat : FloatingActionButton
-    private lateinit var mapView : MapView
-    private lateinit var thisCat : Data
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-//        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView'
-
-        addCat.setOnClickListener {
-            val detailIntent = Intent(this, CatAddInput::class.java).apply
-            startActivity(detailIntent)
-
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        // Inflate the layout for this fragment
-        val rootLayout =  inflater.inflate(R.layout.fragment_map, container, false)
-        //requireContext()
-
-
-
-        mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
-        mapView.setTileSource(TileSourceFactory.MAPNIK)
-
-        addCat = mapView.findViewById(R.id.fab_addCat)
-        addLostCat = mapView.findViewById(R.id.fab_addLost)
-
-        // should center the map??
-        val mapController = mapView.controller
-        mapController.setZoom(9.99)
-        
-        val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
-        mapController.setCenter(startPoint);
-
-
-
-        return rootLayout
-    }
-
-
-
-
-     fun addIcon(lat : Double, long : Double) {
-        var marker = Marker(mapView)
-        marker.position = GeoPoint(lat, long)
-        marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cat_icon_24)
-        marker.title = "Test Marker"
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-        mapView.overlays.add(marker)
-        mapView.invalidate()
-
-//        marker.setOnMarkerClickListener() {
-//
-//            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
-//            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
-//
-//            it.context.startActivity(detailIntent)
-//        }
-        //im so confused what am i doing
-    }
-
-    private fun addCat(name : String , description : String, friendly : String, lat : Double, long : Double) {
-        //your items
-        thisCat =  Data(name, description, friendly, lat, long)
-        catList.add(thisCat)
-
-        val items = ArrayList<OverlayItem>()
-        items.add(OverlayItem(name, description, GeoPoint(lat, long)))
-
-
-
-//the overlay
-        var overlay = ItemizedOverlayWithFocus<OverlayItem>(items, object: ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
-            override fun onItemSingleTapUp(index:Int, item: OverlayItem):Boolean {
-                //do something
-                return true
-            }
-            override fun onItemLongPress(index:Int, item: OverlayItem):Boolean {
-                return false
-            }
-        }, requireContext())
-        overlay.setFocusItemsOnTap(true);
-
-        mapView.overlays.add(overlay); //mapView?
-        addIcon(lat, long)
-
-    }
+    private lateinit var catList: MutableList<Data>
+    private lateinit var addCat: FloatingActionButton
+    private lateinit var addLostCat: FloatingActionButton
+    private lateinit var mapView: MapView
+    private lateinit var thisCat: Data
 
     companion object {
         /**
@@ -152,5 +58,112 @@ class MapFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+//        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView'
+
+
+    }
+
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+
+            // Inflate the layout for this fragment
+            val rootLayout = inflater.inflate(R.layout.fragment_map, container, false)
+            //requireContext()
+
+
+            mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
+            mapView.setTileSource(TileSourceFactory.MAPNIK)
+
+            addCat = mapView.findViewById(R.id.fab_addCat)
+            addLostCat = mapView.findViewById(R.id.fab_addLost)
+
+            // should center the map??
+            val mapController = mapView.controller
+            mapController.setZoom(9.99)
+
+            val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
+            mapController.setCenter(startPoint);
+
+
+
+            addCat.setOnClickListener {
+                val detailIntent = Intent(requireContext(), CatAddInput::class.java).apply {
+                    putExtra(lat)
+                }
+                startActivity(detailIntent)
+
+
+            }
+
+            return rootLayout
+        }
+
+
+        fun addIcon(lat: Double, long: Double) {
+            var marker = Marker(mapView)
+            marker.position = GeoPoint(lat, long)
+            marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cat_icon_24)
+            marker.title = "Test Marker"
+            marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+            mapView.overlays.add(marker)
+            mapView.invalidate()
+
+//        marker.setOnMarkerClickListener() {
+//
+//            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
+//            detailIntent.putExtra(CatsDetailActivity.EXTRA_CAT, cat)
+//
+//            it.context.startActivity(detailIntent)
+//        }
+            //im so confused what am i doing
+        }
+
+        private fun addCat(
+            name: String,
+            description: String,
+            friendly: String,
+            lat: Double,
+            long: Double
+        ) {
+            //your items
+            thisCat = Data(name, description, friendly, lat, long)
+            catList.add(thisCat)
+
+            val items = ArrayList<OverlayItem>()
+            items.add(OverlayItem(name, description, GeoPoint(lat, long)))
+
+
+//the overlay
+            var overlay = ItemizedOverlayWithFocus<OverlayItem>(
+                items,
+                object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
+                    override fun onItemSingleTapUp(index: Int, item: OverlayItem): Boolean {
+                        //do something
+                        return true
+                    }
+
+                    override fun onItemLongPress(index: Int, item: OverlayItem): Boolean {
+                        return false
+                    }
+                },
+                requireContext()
+            )
+            overlay.setFocusItemsOnTap(true);
+
+            mapView.overlays.add(overlay); //mapView?
+            addIcon(lat, long)
+
+        }
     }
 }
