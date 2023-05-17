@@ -99,7 +99,8 @@ class MapFragment : Fragment() {
 
             addCat.setOnClickListener {
                 val detailIntent = Intent(requireContext(), CatAddInput::class.java).apply {
-                    putExtra(lat)
+                    putExtra(CatAddInput.EXTRA_CAT, binding., .text.toString())
+                    putExtra(CatAddInput.EXTRA_CAT, binding.editTextRegistrationPassword.text.toString())
                 }
                 startActivity(detailIntent)
 

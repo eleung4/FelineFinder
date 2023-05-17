@@ -8,6 +8,10 @@ import android.widget.Toast
 import com.example.felinefinder.databinding.ActivityCatAddInputBinding
 
 class CatAddInput : AppCompatActivity() {
+
+    companion object {
+        val EXTRA_CAT = "cat"
+    }
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_cat_add_input)
@@ -15,9 +19,9 @@ class CatAddInput : AppCompatActivity() {
     private lateinit var binding: ActivityCatAddInputBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cat_add_input)
+//        setContentView(R.layout.activity_cat_add_input)
         binding = ActivityCatAddInputBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
+        setContentView(binding.root)
 //
 //        val username = intent.getStringExtra(LoginActivity.EXTRA_USERNAME) ?: ""
 //        val password = intent.getStringExtra(LoginActivity.EXTRA_PASSWORD) ?: ""
