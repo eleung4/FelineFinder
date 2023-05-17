@@ -49,7 +49,7 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
 //        mapView = (view?.findViewById(R.id.mapView_mapFragment) ?: this) as MapView'
 
         addCat.setOnClickListener {
-            val detailIntent = Intent(this, CatsDetailActivity::class.java).apply
+            val detailIntent = Intent(this, CatAddInput::class.java).apply
             startActivity(detailIntent)
 
 
@@ -75,6 +75,7 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
         // should center the map??
         val mapController = mapView.controller
         mapController.setZoom(9.99)
+        
         val startPoint = GeoPoint(34.1095664689106, -118.15445321324104);
         mapController.setCenter(startPoint);
 
@@ -94,6 +95,7 @@ class MapFragment (var catList : MutableList<Data>): Fragment() {
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
         mapView.overlays.add(marker)
         mapView.invalidate()
+
 //        marker.setOnMarkerClickListener() {
 //
 //            val detailIntent = Intent(it.context, CatsDetailActivity::class.java)
