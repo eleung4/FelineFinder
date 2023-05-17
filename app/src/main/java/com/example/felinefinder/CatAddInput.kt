@@ -27,12 +27,13 @@ class CatAddInput : AppCompatActivity() {
         //register an account and send back the username and password to the login activity to prefill those fields
         binding.buttonAddRegister.setOnClickListener {
             val name = binding.editTextAddName.text.toString()
-            val breed = binding.editTextAddBreed.text.toString()
+            val description = binding.editTextAddDescription.text.toString()
             val friendly = binding.editTextAddFriendly.text.toString()
             val lat = binding.editTextAddLat.text.toString()
             val long = binding.editTextAddLong.text.toString()
 
-            MapFragment.addIcon(Double: lat, Double :long)
+            MapFragment.addIcon(lat, long)
+            MapFragment.addCat(name, description, friendly, lat, long)
             //weeeee
 
 
