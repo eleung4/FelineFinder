@@ -33,7 +33,7 @@ class CatAddInput : AppCompatActivity() {
             val long = binding.editTextAddLong.text.toString()
 
             MapFragment.addIcon(Double: lat, Double :long)
-            //weeee
+            //weeeee
 
 
         }
