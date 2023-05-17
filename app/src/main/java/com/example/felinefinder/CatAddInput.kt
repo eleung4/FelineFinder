@@ -32,6 +32,7 @@ class CatAddInput : AppCompatActivity() {
             val long = binding.editTextTextEmailAddress.text.toString()
 
             MapFragment.addIcon(Double: lat, Double :long)
+            //weeee
 
 
         }
