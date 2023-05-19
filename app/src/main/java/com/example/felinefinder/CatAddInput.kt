@@ -10,6 +10,10 @@ import com.example.felinefinder.ListFragment.Companion.newInstance
 import com.example.felinefinder.databinding.ActivityCatAddInputBinding
 
 class CatAddInput : AppCompatActivity() {
+
+    companion object {
+        val EXTRA_CAT = "cat"
+    }
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_cat_add_input)

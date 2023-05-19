@@ -104,11 +104,23 @@ class MapFragment : Fragment() {
 
 
             addCat.setOnClickListener {
+                val name: String
+                val description: String
+                val friendly: String
+                val lat = 34.1095664689106
+                val long= -118.15445321324104
+               addCat("george", "orange", "yes", 10.1, 20.6)
+                addIcon(lat, long)
+
                 val detailIntent = Intent(requireContext(), CatAddInput::class.java).apply {
-                    putExtra(lat)
+                    putExtra(CatAddInput.EXTRA_CAT, name)
+                    putExtra(CatAddInput.EXTRA_CAT, description)
+                    putExtra(CatAddInput.EXTRA_CAT, friendly)
+                    putExtra(CatAddInput.EXTRA_CAT, lat)
+                    putExtra(CatAddInput.EXTRA_CAT, long)
+
                 }
                 startActivity(detailIntent)
-
 
             }
 
@@ -135,7 +147,7 @@ class MapFragment : Fragment() {
             //im so confused what am i doing
         }
 
-        private fun addCat(
+        fun addCat(
             name: String,
             description: String,
             friendly: String,
@@ -143,6 +155,8 @@ class MapFragment : Fragment() {
             long: Double
         ) {
             //your items
+
+
             thisCat = Data(name, description, friendly, lat, long)
             catList.add(thisCat)
 
