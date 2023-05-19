@@ -1,14 +1,15 @@
 package com.example.felinefinder
 
-import android.content.Intent
+import android.R
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.EditText
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -17,7 +18,6 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
-import java.util.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -104,15 +104,24 @@ class MapFragment : Fragment() {
                 val lat : Double
                 val long : Double
 
-                val detailIntent = Intent(requireContext(), CatAddInput::class.java).apply {
-//                    putExtra(CatAddInput.EXTRA_CAT, name)
-//                    putExtra(CatAddInput.EXTRA_CAT, description)
-//                    putExtra(CatAddInput.EXTRA_CAT, friendly)
-//                    putExtra(CatAddInput.EXTRA_CAT, lat)
-//                    putExtra(CatAddInput.EXTRA_CAT, long)
+                val inputEditTextField = EditText(requireActivity())
+                val dialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Title")
+                    .setMessage("Message")
+                    .setPositiveButton("OK") { _, _ ->
+                        val editTextInput = inputEditTextField .text.toString()
+                        Timber.d("editext value is: $editTextInput")
+                    }
+                    .setNegativeButton("Cancel", null)
+                val inflater = layoutInflater
+                val dialoglayout: View = inflater.inflate(R.layout., null)
+                val builder = AlertDialog.Builder(this)
+                builder.setView(dialoglayout)
+                builder.show()
+                    .create()
+                dialog.show()
 
-                }
-                startActivity(detailIntent)
+
 
             }
 
