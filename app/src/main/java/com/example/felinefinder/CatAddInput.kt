@@ -40,7 +40,7 @@ class CatAddInput : AppCompatActivity() {
             val long = binding.editTextAddLong.text.toString()
 
             MapFragment.newInstance.addIcon(lat, long)
-            MapFragment.addCat(name, description, friendly, lat, long)
+            ListFragment.addCat(name, description, friendly, lat, long)
             val detailIntent = Intent().apply {
                 putExtra(MapFragment.EXTRA_NAME, binding.editTextAddName.text.toString())
                 putExtra(MapFragment.EXTRA_DESCRIPTION, binding.editTextAddDescription.text.toString())
