@@ -1,8 +1,8 @@
 package com.example.felinefinder
 
-import android.R
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
@@ -91,8 +91,8 @@ class MapFragment : Fragment() {
             mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)
             mapView.setTileSource(TileSourceFactory.MAPNIK)
 
-            addCat = mapView.findViewById(R.id.fab_addCat)
-            addLostCat = mapView.findViewById(R.id.fab_addLost)
+            addCat = rootLayout.findViewById(R.id.fab_addCat)
+            addLostCat = rootLayout.findViewById(R.id.fab_addLost)
 
             // should center the map??
             val mapController = mapView.controller
@@ -109,22 +109,24 @@ class MapFragment : Fragment() {
                 val friendly: String
                 val lat : Double
                 val long : Double
-
-                val inputEditTextField = EditText(requireActivity())
+                val inflater = layoutInflater
+                val dialoglayout: View = inflater.inflate(R.layout.dialog_cat_add_input, null)
+                val nameText = dialoglayout.findViewById<EditText>(R.id.editText_add_name)
+//                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
                     .setTitle("Title")
                     .setMessage("Message")
+                    .setView(dialoglayout)
                     .setPositiveButton("OK") { _, _ ->
-                        val editTextInput = inputEditTextField .text.toString()
-                        Timber.d("editext value is: $editTextInput")
+                        val editTextInput = nameText .text.toString()
+                        Log.d("mapview","editext value is: $editTextInput")
                     }
                     .setNegativeButton("Cancel", null)
-                val inflater = layoutInflater
-                val dialoglayout: View = inflater.inflate(R.layout., null)
-                val builder = AlertDialog.Builder(this)
-                builder.setView(dialoglayout)
-                builder.show()
-                    .create()
+
+//                val builder = AlertDialog.Builder(requireContext())
+//                builder.setView(dialoglayout)
+//                builder.show()
+//                    .create()
                 dialog.show()
 
 
@@ -164,8 +166,8 @@ class MapFragment : Fragment() {
             //your items
 
 
-            thisCat = Data(name, description, friendly, lat, long)
-            catList.add(thisCat)
+//            thisCat = Data(name, description, friendly, lat, long)
+//            catList.add(thisCat)
 
             val items = ArrayList<OverlayItem>()
             items.add(OverlayItem(name, description, GeoPoint(lat, long)))
