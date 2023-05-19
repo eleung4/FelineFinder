@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.felinefinder.FavoritesFragment.Companion.newInstance
+import com.example.felinefinder.ListFragment.Companion.newInstance
 import com.example.felinefinder.databinding.ActivityCatAddInputBinding
 
 class CatAddInput : AppCompatActivity() {
@@ -33,10 +35,17 @@ class CatAddInput : AppCompatActivity() {
             val lat = binding.editTextAddLat.text.toString()
             val long = binding.editTextAddLong.text.toString()
 
-            MapFragment.addIcon(lat, long)
+            MapFragment.newInstance.addIcon(lat, long)
             MapFragment.addCat(name, description, friendly, lat, long)
-            //weeeee
-
+            val detailIntent = Intent().apply {
+                putExtra(MapFragment.EXTRA_NAME, binding.editTextAddName.text.toString())
+                putExtra(MapFragment.EXTRA_DESCRIPTION, binding.editTextAddDescription.text.toString())
+                putExtra(MapFragment.EXTRA_FRIENDLY, binding.editTextAddFriendly.text.toString())
+                putExtra(MapFragment.EXTRA_LAT, binding.editTextAddLat.text.toString())
+                putExtra(MapFragment.EXTRA_LONG, binding.editTextAddLong.text.toString())
+            }
+            setResult(Activity.RESULT_OK, detailIntent)
+            finish()
 
         }
 
