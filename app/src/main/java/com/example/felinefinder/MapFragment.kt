@@ -58,6 +58,12 @@ class MapFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+        val EXTRA_NAME = "name"
+        val EXTRA_DESCRIPTION = "description"
+        val EXTRA_FRIENDLY = "friendly"
+        val EXTRA_LAT = "lat"
+        val EXTRA_LONG = "long"
+
     }
 
 
@@ -187,4 +193,3 @@ class MapFragment : Fragment() {
 
         }
     }
-}

@@ -6,7 +6,6 @@
         <entry key="app/src/main/res/drawable/ic_amanda_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_baseline_pets_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_baseline_temple_buddhist_24.xml" value="0.2345" />
-        <entry key="app/src/main/res/drawable/ic_cat_icon_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_rat_24.xml" value="0.2345" />
         <entry key="app/src/main/res/layout/activity_cat_add_input.xml" value="0.36302083333333335" />
         <entry key="app/src/main/res/layout/activity_cat_detail.xml" value="0.36302083333333335" />
@@ -14,7 +13,7 @@
         <entry key="app/src/main/res/layout/activity_cats_detail.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.36302083333333335" />
-        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.36302083333333335" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.36302083333333335" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.3619791666666667" />
       </map>
