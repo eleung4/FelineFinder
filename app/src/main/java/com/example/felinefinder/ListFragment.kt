@@ -55,6 +55,16 @@ class ListFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        fun addCatToList(
+            name: String,
+            description: String,
+            friendly: String,
+            lat: String,
+            long: String
+        ) {
+            TODO("Not yet implemented")
+        }
     }
 
 
