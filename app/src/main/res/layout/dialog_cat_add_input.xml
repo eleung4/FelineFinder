@@ -40,8 +40,7 @@
 
         android:ems="10"
         android:hint="longitude"
-        android:inputType="textPersonName"
-        />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText_add_lat"
@@ -52,8 +51,7 @@
 
         android:ems="10"
         android:hint="latitude"
-        android:inputType="textPersonName"
-       />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText_add_description"
@@ -65,7 +63,7 @@
         android:hint="Description"
         android:inputType="textPersonName" />
 
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/button_add_register"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
