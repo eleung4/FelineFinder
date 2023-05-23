@@ -116,6 +116,7 @@ class MapFragment : Fragment() {
                 val latText = dialoglayout.findViewById<EditText>(R.id.editText_add_lat)
                 val longText = dialoglayout.findViewById<EditText>(R.id.editText_add_long)
                 val descText = dialoglayout.findViewById<EditText>(R.id.editText_add_description)
+                val lostBox = dialoglayout.findViewById<EditText>(R.id.editText_lost)
 
 //                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
@@ -128,11 +129,15 @@ class MapFragment : Fragment() {
                         val editTextLat = latText.text.toString()
                         val editTextLong = longText.text.toString()
                         val editTextDesc = descText.text.toString()
+                        val editLost = lostBox.text.toString()
                         Log.d("mapview","name value is: $editTextName")
                         Log.d("mapview","friendly value is: $editTextFriendly")
                         Log.d("mapview","lat value is: $editTextLat")
                         Log.d("mapview","long value is: $editTextLong")
                         Log.d("mapview","description value is: $editTextDesc")
+                        Log.d("mapview","lost value is: $editLost")
+
+
 
                         ListFragment.addCatToList(editTextName, editTextFriendly, editTextLat, editTextLong, editTextDesc)
 

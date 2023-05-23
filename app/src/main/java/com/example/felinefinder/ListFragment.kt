@@ -63,7 +63,7 @@ class ListFragment : Fragment() {
             long: String,
             description: String
         ) {
-            Data cat1 = newData(name, description, friendly, lat, long)
+            Data cat1 = newData(name; friendly; description; lat; long)
         }
     }
 

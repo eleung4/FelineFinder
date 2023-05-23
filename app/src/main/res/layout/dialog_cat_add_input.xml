@@ -63,6 +63,15 @@
         android:hint="Description"
         android:inputType="textPersonName" />
 
+    <CheckBox
+        android:id="@+id/editText_lost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Lost?" />
+
     <!--    <Button-->
 <!--        android:id="@+id/button_add_register"-->
 <!--        android:layout_width="wrap_content"-->
