@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -117,7 +118,7 @@ class MapFragment : Fragment() {
                 val latText = dialoglayout.findViewById<EditText>(R.id.editText_add_lat)
                 val longText = dialoglayout.findViewById<EditText>(R.id.editText_add_long)
                 val descText = dialoglayout.findViewById<EditText>(R.id.editText_add_description)
-                val lostBox = dialoglayout.findViewById<EditText>(R.id.editText_lost)
+                val lostBox = dialoglayout.findViewById<CheckBox>(R.id.checkbox_lost)
 
 //                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
@@ -130,7 +131,7 @@ class MapFragment : Fragment() {
                         val editTextLat = latText.text.toString().toDouble()
                         val editTextLong = longText.text.toString().toDouble()
                         val editTextDesc = descText.text.toString()
-                        val editLost = lostBox.text.toString().toBoolean()
+                        val editLost = lostBox.isChecked
                         Log.d("mapview","name value is: $editTextName")
                         Log.d("mapview","friendly value is: $editTextFriendly")
                         Log.d("mapview","lat value is: $editTextLat")
