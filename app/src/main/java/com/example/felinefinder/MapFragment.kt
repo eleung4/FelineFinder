@@ -121,6 +121,11 @@ class MapFragment : Fragment() {
                     .setView(dialoglayout)
                     .setPositiveButton("OK") { _, _ ->
                         val editTextInput = nameText .text.toString()
+                        val name = dialoglayout.editTextAddName.text.toString()
+                        val description = binding.editTextRegistrationConfirmPassword.text.toString()
+                        val friendly = binding.editTextRegistrationUsername.text.toString()
+                        val lat = binding.editTextRegistrationName.text.toString()
+                        val long = binding.editTextTextEmailAddress.text.toString()
                         Log.d("mapview","editext value is: $editTextInput")
                     }
                     .setNegativeButton("Cancel", null)
