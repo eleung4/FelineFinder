@@ -134,6 +134,7 @@ class MapFragment : Fragment() {
                         Log.d("mapview","long value is: $editTextLong")
                         Log.d("mapview","description value is: $editTextDesc")
 
+                        ListFragment.addCatToList(editTextName, editTextFriendly, editTextLat, editTextLong, editTextDesc)
 
 
                     }
@@ -144,10 +145,6 @@ class MapFragment : Fragment() {
 //                builder.show()
 //                    .create()
                 dialog.show()
-
-
-
-
 
             }
 

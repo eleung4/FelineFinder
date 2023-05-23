@@ -58,10 +58,10 @@ class ListFragment : Fragment() {
 
         fun addCatToList(
             name: String,
-            description: String,
             friendly: String,
             lat: String,
-            long: String
+            long: String,
+            description: String
         ) {
             Data cat1 = newData(name, description, friendly, lat, long)
         }
