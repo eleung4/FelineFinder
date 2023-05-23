@@ -63,7 +63,7 @@ class ListFragment : Fragment() {
             lat: String,
             long: String
         ) {
-            TODO("Not yet implemented")
+            Data cat1 = newData(name, description, friendly, lat, long)
         }
     }
 

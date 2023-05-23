@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class CatAdapter(var dataSet: List<String>) : RecyclerView.Adapter<CatAdapter.ViewHolder>() {
+class CatAdapter(var dataSet: List<Data>) : RecyclerView.Adapter<CatAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView
         val textViewDesc : TextView
