@@ -10,7 +10,7 @@ import android.view.ViewGroup
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var catList: MutableList<Data>
+ lateinit var catList: MutableList<Data>
 
 
 /**
@@ -22,6 +22,7 @@ class ListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var mainActivity = requireActivity() as MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,9 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        mainActivity.catList
+
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
@@ -59,15 +63,16 @@ class ListFragment : Fragment() {
             }
 
         fun addCatToList(
-            name: Data,
+            name: String,
             friendly: String,
             lat: Double,
             long: Double,
             description: String,
             lost: Boolean
         ) {
-            Data cat = new Data(name, friendly, description, lat, long, lost)
+            var cat =  Data(name, friendly, description, lat, long, lost)
             catList.add(cat)
+
 
         }
     }

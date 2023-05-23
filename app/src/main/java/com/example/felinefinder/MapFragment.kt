@@ -38,6 +38,7 @@ class MapFragment : Fragment() {
     private lateinit var addCat: FloatingActionButton
     private lateinit var mapView: MapView
     private lateinit var thisCat: Data
+    var mainActivity = requireActivity() as MainActivity
 
     companion object {
         /**
@@ -139,7 +140,11 @@ class MapFragment : Fragment() {
 //                        Data cat1 = newData(name; friendly; description; lat; long; lost)
 
                         var cat1 = Data(editTextName, editTextFriendly, editTextDesc, editTextLat, editTextLong, editLost)
-                        ListFragment.addCatToList(cat1)
+//                        ListFragment.addCatToList(cat1)
+
+                        mainActivity.catList.add(cat1)
+
+
 
 
 
