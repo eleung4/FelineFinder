@@ -38,7 +38,7 @@ class MapFragment : Fragment() {
     private lateinit var addCat: FloatingActionButton
     private lateinit var mapView: MapView
     private lateinit var thisCat: Data
-    var mainActivity = requireActivity() as MainActivity
+    lateinit var mainActivity : MainActivity
 
     companion object {
         /**
@@ -86,6 +86,8 @@ class MapFragment : Fragment() {
             // Inflate the layout for this fragment
             val rootLayout = inflater.inflate(R.layout.fragment_map, container, false)
             //requireContext()
+
+            mainActivity = requireActivity() as MainActivity
 
 
             mapView = rootLayout.findViewById<MapView>(R.id.mapView_mapFragment)

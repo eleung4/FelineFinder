@@ -41,6 +41,8 @@ class ListFragment : Fragment() {
         mainActivity.catList
 
         return inflater.inflate(R.layout.fragment_list, container, false)
+
+
     }
 
     companion object {
@@ -62,21 +64,20 @@ class ListFragment : Fragment() {
                 }
             }
 
-        fun addCatToList(
-            name: String,
-            friendly: String,
-            lat: Double,
-            long: Double,
-            description: String,
-            lost: Boolean
-        ) {
-            var cat =  Data(name, friendly, description, lat, long, lost)
-            catList.add(cat)
+//        fun addCatToList(
+//            name: String,
+//            friendly: String,
+//            lat: Double,
+//            long: Double,
+//            description: String,
+//            lost: Boolean
+//        ) {
+//            var cat = Data(name, friendly, description, lat, long, lost)
+//            catList.add(cat)
+//
+//
+//        }
 
 
-        }
     }
-
-
-
 }
