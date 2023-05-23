@@ -112,19 +112,30 @@ class MapFragment : Fragment() {
                 val inflater = layoutInflater
                 val dialoglayout: View = inflater.inflate(R.layout.dialog_cat_add_input, null)
                 val nameText = dialoglayout.findViewById<EditText>(R.id.editText_add_name)
+                val friendlyText = dialoglayout.findViewById<EditText>(R.id.editText_add_friendly)
+                val latText = dialoglayout.findViewById<EditText>(R.id.editText_add_lat)
+                val longText = dialoglayout.findViewById<EditText>(R.id.editText_add_long)
+                val descText = dialoglayout.findViewById<EditText>(R.id.editText_add_description)
+
 //                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
                     .setTitle("Add a Cat")
                     .setMessage("Put in the cat's attributes. If it is a losy cat, click the lost box.")
                     .setView(dialoglayout)
                     .setPositiveButton("OK") { _, _ ->
-                        val editTextInput = nameText .text.toString()
-                        val name = dialoglayout.editTextAddName.text.toString()
-                        val description = binding.editTextRegistrationConfirmPassword.text.toString()
-                        val friendly = binding.editTextRegistrationUsername.text.toString()
-                        val lat = binding.editTextRegistrationName.text.toString()
-                        val long = binding.editTextTextEmailAddress.text.toString()
-                        Log.d("mapview","editext value is: $editTextInput")
+                        val editTextName = nameText.text.toString()
+                        val editTextFriendly = friendlyText.text.toString()
+                        val editTextLat = latText.text.toString()
+                        val editTextLong = longText.text.toString()
+                        val editTextDesc = descText.text.toString()
+                        Log.d("mapview","name value is: $editTextName")
+                        Log.d("mapview","friendly value is: $editTextFriendly")
+                        Log.d("mapview","lat value is: $editTextLat")
+                        Log.d("mapview","long value is: $editTextLong")
+                        Log.d("mapview","description value is: $editTextDesc")
+
+
+
                     }
                     .setNegativeButton("Cancel", null)
 
