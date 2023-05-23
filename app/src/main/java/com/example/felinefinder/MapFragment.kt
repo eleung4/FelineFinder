@@ -38,7 +38,6 @@ class MapFragment : Fragment() {
     private var param2: String? = null
     private lateinit var catList: MutableList<Data>
     private lateinit var addCat: FloatingActionButton
-    private lateinit var addLostCat: FloatingActionButton
     private lateinit var mapView: MapView
     private lateinit var thisCat: Data
 
@@ -94,7 +93,6 @@ class MapFragment : Fragment() {
             mapView.setTileSource(TileSourceFactory.MAPNIK)
 
             addCat = rootLayout.findViewById(R.id.fab_addCat)
-            addLostCat = rootLayout.findViewById(R.id.fab_addLost)
 
             // should center the map??
             val mapController = mapView.controller
@@ -116,8 +114,8 @@ class MapFragment : Fragment() {
                 val nameText = dialoglayout.findViewById<EditText>(R.id.editText_add_name)
 //                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
-                    .setTitle("Title")
-                    .setMessage("Message")
+                    .setTitle("Add a Cat")
+                    .setMessage("Put in the cat's attributes. If it is a losy cat, click the lost box.")
                     .setView(dialoglayout)
                     .setPositiveButton("OK") { _, _ ->
                         val editTextInput = nameText .text.toString()
@@ -130,6 +128,8 @@ class MapFragment : Fragment() {
 //                builder.show()
 //                    .create()
                 dialog.show()
+
+
 
 
 
