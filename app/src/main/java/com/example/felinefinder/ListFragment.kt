@@ -10,6 +10,8 @@ import android.view.ViewGroup
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private lateinit var catList: MutableList<Data>
+
 
 /**
  * A simple [Fragment] subclass.
@@ -57,14 +59,16 @@ class ListFragment : Fragment() {
             }
 
         fun addCatToList(
-            name: String,
+            name: Data,
             friendly: String,
-            lat: String,
-            long: String,
-            description: String
+            lat: Double,
+            long: Double,
+            description: String,
             lost: Boolean
         ) {
-            Data cat1 = newData(name; friendly; description; lat; long; lost)
+            Data cat = new Data(name, friendly, description, lat, long, lost)
+            catList.add(cat)
+
         }
     }
 

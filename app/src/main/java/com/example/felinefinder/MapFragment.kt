@@ -3,7 +3,6 @@ package com.example.felinefinder
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,6 @@ class MapFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var catList: MutableList<Data>
     private lateinit var addCat: FloatingActionButton
     private lateinit var mapView: MapView
     private lateinit var thisCat: Data
@@ -104,11 +102,11 @@ class MapFragment : Fragment() {
 
 
             addCat.setOnClickListener {
-                val name: String
-                val description: String
-                val friendly: String
-                val lat : Double
-                val long : Double
+//                val name: String
+//                val description: String
+//                val friendly: String
+//                val lat : Double
+//                val long : Double
                 val inflater = layoutInflater
                 val dialoglayout: View = inflater.inflate(R.layout.dialog_cat_add_input, null)
                 val nameText = dialoglayout.findViewById<EditText>(R.id.editText_add_name)
@@ -126,10 +124,10 @@ class MapFragment : Fragment() {
                     .setPositiveButton("OK") { _, _ ->
                         val editTextName = nameText.text.toString()
                         val editTextFriendly = friendlyText.text.toString()
-                        val editTextLat = latText.text.toString()
-                        val editTextLong = longText.text.toString()
+                        val editTextLat = latText.text.toString().toDouble()
+                        val editTextLong = longText.text.toString().toDouble()
                         val editTextDesc = descText.text.toString()
-                        val editLost = lostBox.text.toString()
+                        val editLost = lostBox.text.toString().toBoolean()
                         Log.d("mapview","name value is: $editTextName")
                         Log.d("mapview","friendly value is: $editTextFriendly")
                         Log.d("mapview","lat value is: $editTextLat")
@@ -137,9 +135,12 @@ class MapFragment : Fragment() {
                         Log.d("mapview","description value is: $editTextDesc")
                         Log.d("mapview","lost value is: $editLost")
 
+//                        catList.add(editTextName, editTextFriendly, editTextDesc, editTextLat, editTextLong, editLost)
+//                        Data cat1 = newData(name; friendly; description; lat; long; lost)
 
+                        var cat1 = Data(editTextName, editTextFriendly, editTextDesc, editTextLat, editTextLong, editLost)
+                        ListFragment.addCatToList(cat1)
 
-                        ListFragment.addCatToList(editTextName, editTextFriendly, editTextLat, editTextLong, editTextDesc)
 
 
                     }
