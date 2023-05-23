@@ -62,8 +62,9 @@ class ListFragment : Fragment() {
             lat: String,
             long: String,
             description: String
+            lost: Boolean
         ) {
-            Data cat1 = newData(name, description, friendly, lat, long)
+            Data cat1 = newData(name; friendly; description; lat; long; lost)
         }
     }
 

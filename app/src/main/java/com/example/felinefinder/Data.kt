@@ -7,13 +7,9 @@ import java.util.*
 @Parcelize
 data class Data(
     var name: String,
-    var description: String,
     var friendly: String,
-    var long: Double,
+    var description: String,
     var lat: Double,
-    var age: Int,
-    var lost: Boolean,
-    var breed: String,
-    var lastSeen: Date,
-    val image: String
+    var long: Double,
+    var lost: Boolean
 ): Parcelable
