@@ -13,6 +13,16 @@
         android:text="Map fragment"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_addCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/sharp_add_black_36"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="15dp"
+        android:focusable="true" />
+
 
     <org.osmdroid.views.MapView
         android:id="@+id/mapView_mapFragment"
@@ -20,12 +30,6 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_addCat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/sharp_add_black_36" />
 
     </org.osmdroid.views.MapView>
 
