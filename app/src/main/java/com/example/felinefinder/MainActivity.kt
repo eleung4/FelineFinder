@@ -3,6 +3,7 @@ package com.example.felinefinder
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -132,5 +133,6 @@ class MainActivity : AppCompatActivity() {
 
     fun addCat(cat: Data) {
         catList.add(cat)
+        Log.d("MainActivity", "added cat to list in Main Activity")
     }
 }
