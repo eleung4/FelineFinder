@@ -146,7 +146,7 @@ class MapFragment : Fragment() {
 //                        ListFragment.addCatToList(cat1)
 
                         mainActivity.catList.add(cat1)
-
+                        addIcon(editTextLat, editTextLong)
 
 
 
