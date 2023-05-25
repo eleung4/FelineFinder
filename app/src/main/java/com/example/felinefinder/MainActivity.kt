@@ -134,5 +134,6 @@ class MainActivity : AppCompatActivity() {
     fun addCat(cat: Data) {
         catList.add(cat)
         Log.d("MainActivity", "added cat to list in Main Activity")
+
     }
 }
