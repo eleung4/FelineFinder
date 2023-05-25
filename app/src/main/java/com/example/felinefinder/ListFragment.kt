@@ -38,7 +38,7 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        mainActivity.catList
+//        mainActivity.catList
 
         return inflater.inflate(R.layout.fragment_list, container, false)
 

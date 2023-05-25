@@ -39,6 +39,8 @@ class MapFragment : Fragment() {
     private lateinit var addCat: FloatingActionButton
     private lateinit var mapView: MapView
     private lateinit var thisCat: Data
+    lateinit var mainActivity : MainActivity
+
 
     companion object {
         /**
@@ -69,7 +71,6 @@ class MapFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lateinit var mainActivity : MainActivity
 
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
