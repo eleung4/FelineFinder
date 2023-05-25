@@ -125,7 +125,7 @@ class MapFragment : Fragment() {
 //                val inputEditTextField = EditText(requireActivity())
                 val dialog = AlertDialog.Builder(requireContext())
                     .setTitle("Add a Cat")
-                    .setMessage("Put in the cat's attributes. If it is a losy cat, click the lost box.")
+                    .setMessage("Put in the cat's attributes. If it is a lost cat, click the lost box.")
                     .setView(dialoglayout)
                     .setPositiveButton("OK") { _, _ ->
                         val editTextName = nameText.text.toString()

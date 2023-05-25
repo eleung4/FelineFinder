@@ -40,7 +40,7 @@
 
         android:ems="10"
         android:hint="longitude"
-        android:inputType="number" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <EditText
         android:id="@+id/editText_add_lat"
@@ -51,7 +51,7 @@
 
         android:ems="10"
         android:hint="latitude"
-        android:inputType="number" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <EditText
         android:id="@+id/editText_add_description"

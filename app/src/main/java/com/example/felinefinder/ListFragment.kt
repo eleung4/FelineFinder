@@ -50,21 +50,22 @@ class ListFragment : Fragment() {
         text = rootView.findViewById(R.id.textView_cats)
 
 
-
-
         return rootView
 
 
 
 
-    }//ee
+    }
 
     override fun onStart() {
         super.onStart()
         Log.d("ListFrag", "onCreateView: ${mainActivity.catList}")
-        text.setText(mainActivity.catList.joinToString { "\n" })
-
+        text.setText(mainActivity.catList.joinToString {
+            "Name: ${it.name}, Description:  ${it.description}, Friendly?: ${it.friendly}\n Coordinates: ${it.lat}, ${it.long}, Lost?: ${it.lost} \n"
+        })
     }
+
+
 
     companion object {
         /**
