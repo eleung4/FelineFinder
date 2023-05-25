@@ -1,10 +1,13 @@
 package com.example.felinefinder
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +26,10 @@ class ListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var mainActivity: MainActivity
+//    lateinit var view : RecyclerView
+    lateinit var text : TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +44,25 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        mainActivity = requireActivity() as MainActivity
+        val rootView = inflater.inflate(R.layout.fragment_list, container, false)
 
-//        mainActivity.catList
+        text = rootView.findViewById(R.id.textView_cats)
 
-        return inflater.inflate(R.layout.fragment_list, container, false)
 
+
+
+        return rootView
+
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("ListFrag", "onCreateView: ${mainActivity.catList}")
+        text.setText(mainActivity.catList.joinToString { "\n" })
 
     }
 
@@ -54,6 +75,7 @@ class ListFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment ListFragment.
          */
+
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

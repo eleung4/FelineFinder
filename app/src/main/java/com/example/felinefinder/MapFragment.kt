@@ -149,7 +149,7 @@ class MapFragment : Fragment() {
 
                         //mainActivity.catList.add(cat1)
                         mainActivity.addCat(cat1)
-                        addIcon2(editTextLat, editTextLong, editTextName, editTextFriendly, editTextDesc)
+                        addIcon2(editTextLat, editTextLong, editTextName, editTextFriendly, editTextDesc, editLost)
 
 
 
@@ -189,11 +189,11 @@ class MapFragment : Fragment() {
             //im so confused what am i doing
         }
 
-    fun addIcon2(lat: Double, long: Double, name: String, friendly: String, description: String) {
+    fun addIcon2(lat: Double, long: Double, name: String, friendly: String, description: String, lost: Boolean) {
         var marker = Marker(mapView)
         marker.position = GeoPoint(lat, long)
         marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cat_icon_24)
-        marker.title = "$name \nfriendly: $friendly /n$description"
+        marker.title = "$name \nfriendly: $friendly /n$description /n lost: $lost"
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
         mapView.overlays.add(marker)
         mapView.invalidate()

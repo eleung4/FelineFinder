@@ -77,8 +77,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-
 //        binding.fabAddCat.setOnClickListener() {
 //            Toast.makeText( this, "add cat button", Toast.LENGTH_SHORT).show()
 //
