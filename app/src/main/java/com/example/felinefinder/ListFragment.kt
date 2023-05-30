@@ -61,7 +61,7 @@ class ListFragment : Fragment() {
         super.onStart()
         Log.d("ListFrag", "onCreateView: ${mainActivity.catList}")
         text.setText(mainActivity.catList.joinToString {
-            "Name: ${it.name}, Description:  ${it.description}, Friendly?: ${it.friendly}\n Coordinates: ${it.lat}, ${it.long}, Lost?: ${it.lost} \n"
+            "Name: ${it.name}, Description:  ${it.description}, Friendly?: ${it.friendly}\n Coordinates: ${it.lat}, ${it.long}, Lost?: ${it.lost} \n \n"
         })
     }
 
